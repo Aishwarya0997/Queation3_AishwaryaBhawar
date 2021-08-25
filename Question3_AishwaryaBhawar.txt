@@ -1,0 +1,20 @@
+public static int countingValleys(int steps, String path) 
+{
+    int altitude = 0;       // 0 = sea-level
+    int countedValleys = 0;                     
+    
+    //Loop through path evaluating each change in altitude
+    for(char altChange: path.toCharArray())
+    {
+        //'U' UpHill. Otherwise, DownHill ('D')
+        altitude = altChange == 'U' ? altitude + 1 : altitude - 1;
+        
+        //If you've reached sea-level and you came from below, you've found a valley
+        if(altitude == 0 && altChange == 'U')
+            countedValleys++;
+		
+    }
+    
+    //Return count of found valleys
+    return countedValleys;   
+}
